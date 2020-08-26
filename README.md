@@ -5,4 +5,4 @@ Sound Pressure Level Indicator
 ## Instalation 
 ## Started
 ## How to Contribute
-## Lisence
+## License
