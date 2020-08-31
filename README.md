@@ -2,7 +2,7 @@
 Sound Pressure Level Indicator
 ## Content
 ## Description
-## Instalation 
+## Installation 
 ## Started
 ## How to Contribute
 ## License
