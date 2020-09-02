@@ -1,14 +1,14 @@
 const express = require('express');
-const { samplesMock } = require('../../utils/mocks/samplesMock');
+const MoviesService = require('../services/samples');
 
 function samplesApi(app) {
   const router = express.Router();
   //use(home:route)
   app.use('/api/samples', router);
-
+  const samplesServices = new MoviesService();
   router.get('/', async function (req, res, next) {
     try {
-      const samples = await Promise.resolve(samplesMock);
+      const samples = await samplesServices.getSamples();
       res.status(200).json({
         data: samples,
         messages: 'samples listed',
@@ -18,8 +18,9 @@ function samplesApi(app) {
     }
   });
   router.get('/:sampleID', async function (req, res, next) {
+    const { sampleID } = req.query;
     try {
-      const samples = await Promise.resolve(samplesMock[0]);
+      const samples = await samplesServices.getSample({ sampleID });
       res.status(200).json({
         data: samples,
         messages: 'sample retrieved',
@@ -30,9 +31,9 @@ function samplesApi(app) {
   });
   router.post('/', async function (req, res, next) {
     try {
-      const createdMovie = await Promise.resolve(samplesMock[0].id);
+      const createdSample = await samplesServices.createSample();
       res.status(201).json({
-        data: createdMovie,
+        data: createdSample,
         messages: 'samples created',
       });
     } catch (err) {
@@ -40,8 +41,9 @@ function samplesApi(app) {
     }
   });
   router.put('/:sampleID', async function (req, res, next) {
+    const { sampleID } = req.query;
     try {
-      const sampleUpdated = await Promise.resolve(samplesMock[0].id);
+      const sampleUpdated = await samplesServices.updateSample({ sampleID });
       res.status(200).json({
         data: sampleUpdated,
         messages: 'sample updated',
@@ -51,8 +53,9 @@ function samplesApi(app) {
     }
   });
   router.delete('/:sampleID', async function (req, res, next) {
+    const { sampleID } = req.query;
     try {
-      const sampleDeleted = await Promise.resolve(samplesMock[0].id);
+      const sampleDeleted = await samplesServices.deleteSample({ sampleID });
       res.status(200).json({
         data: sampleDeleted,
         messages: 'sample deleted',
