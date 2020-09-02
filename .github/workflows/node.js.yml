@@ -25,5 +25,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: cd Server 
+    - run: npm i express dotenv  
+    - run: npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
+    - run: npx mrm lint-staged      
     - run: npm run dev --if-present
     - run: npm test --if-present
