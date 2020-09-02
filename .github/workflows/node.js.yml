@@ -29,6 +29,5 @@ jobs:
         npm i express dotenv
         npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
         npx mrm lint-staged      
-        npm run dev --if-present
         npm test --if-present
 
