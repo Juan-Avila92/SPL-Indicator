@@ -24,9 +24,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd Server 
-    - run: npm i express dotenv  
-    - run: npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
-    - run: npx mrm lint-staged      
-    - run: npm run dev --if-present
-    - run: npm test --if-present
+    - run: |
+        cd Server 
+        npm i express dotenv
+        npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
+        npx mrm lint-staged      
+        npm run dev --if-present
+        npm test --if-present
+
