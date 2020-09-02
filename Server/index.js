@@ -1,17 +1,16 @@
+//Imports
 const express = require('express');
-
+//App aplication instanz
 const app = express();
 
 const { config } = require('./config/index');
+const samplesApi = require('./routes/samples.js');
 
-app.get('/', function (req, res) {
-  res.send('HELLO WORLD!!');
-});
+//Development
 
-app.get('/json', function (req, res) {
-  res.json('HELLO WORLD');
-});
-
+//Router
+samplesApi(app);
+//Listener
 app.listen(config.port, function () {
   console.log(`Listening http://localhost:${config.port}`);
 });
