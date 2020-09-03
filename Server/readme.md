@@ -10,9 +10,23 @@ this is a Server-Rest resquest for the SPL Project, which is development and Nod
 
 the configuration folder, where are the npm sripts ./Server/package.json, you can change the Port in the Folder ./Server/config/index.js
 
+### Dependencies
+
+- Postgres DB
+
 ### Run the Server:
 
 `npm run dev`
+
+### DB
+
+The data base used for this project is postgres the way to connect to Express is wildmire knex connection adn pg, there is a tree dependencies in the package.json.
+
+for more information about the datasheet of Knex is recommend to read the documentation or this website:
+
+- https://devhints.io/knex
+
+it is posible to see the coniguration sheam in ./utils/dbUtils.js file.
 
 ## Contributing
 

@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ server_develpment ]
+    branches: [server_develpment]
   pull_request:
-    branches: [ server_develpment  ]
+    branches: [server_develpment]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,15 +18,16 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: |
-        cd Server 
-        npm i express dotenv
-        npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
-        npx mrm lint-staged      
-        npm test --if-present
-
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: |
+          cd Server 
+          npm i express dotenv
+          npm i knex --save
+          npm i pg --save
+          npm i -D nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier
+          npx mrm lint-staged      
+          npm test --if-present
