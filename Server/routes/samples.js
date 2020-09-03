@@ -1,6 +1,5 @@
 const SamplesService = require('../services/samples');
 const Router = require('express-promise-router');
-const { v4 } = require('uuid');
 
 function samplesApi(app) {
   const router = new Router();
@@ -15,7 +14,7 @@ function samplesApi(app) {
   router.get('/all', async function (req, res, next) {
     console.log(`Request List of all`);
     try {
-      const samples = await samplesServices.getSamples();
+      const samples = await samplesServices.getAllUsers();
       res.status(200).json({
         data: samples,
         messages: 'samples listed',
@@ -40,11 +39,9 @@ function samplesApi(app) {
   });
 
   router.post('/', async function (req, res, next) {
-    const { body: sample } = req;
-    const id = v4();
-    console.log('Got body:', req.body, 'id', id);
+    console.log('Got body:', req.body);
     try {
-      const createdSample = await samplesServices.createSample({ sample });
+      const createdSample = await samplesServices.createNewUser();
       res.status(201).json({
         data: createdSample,
         messages: 'samples created',
