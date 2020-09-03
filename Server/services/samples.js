@@ -1,15 +1,13 @@
 const { samplesMock } = require('../../utils/mocks/samplesMock');
-const QueriesBuilder = require('./queriesBuilder');
+var { getAllUsers, getOneUser } = require('./queriesBuilder');
 
-const somethig = new QueriesBuilder();
 class SamplesServices {
   async getSamples() {
-    const samples = await Promise.resolve(somethig.getAllUsers());
-    return samples || [];
+    //const samples = await Promise.resolve(somethig.getAllUsers());
+    return getAllUsers();
   }
-  async getSample() {
-    const samples = await Promise.resolve(samplesMock[0]);
-    return samples || [];
+  async getSample(user_id) {
+    return getOneUser(user_id);
   }
   async createSample() {
     const createSample = await Promise.resolve(samplesMock[0].id);
