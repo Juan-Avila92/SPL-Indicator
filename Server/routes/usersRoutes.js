@@ -1,11 +1,11 @@
-const SamplesService = require('../services/samples');
+const Userservice = require('../services/usersServices');
 const Router = require('express-promise-router');
 
 function samplesApi(app) {
   const router = new Router();
   app.use('/api/samples', router);
 
-  const samplesServices = new SamplesService();
+  const userservices = new Userservice();
 
   // export our router to be mounted by the parent application
   module.exports = router;
@@ -14,7 +14,7 @@ function samplesApi(app) {
   router.get('/all', async function (req, res, next) {
     console.log(`Request List of all`);
     try {
-      const samples = await samplesServices.getAllUsers();
+      const samples = await userservices.getAllUsers();
       res.status(200).json({
         data: samples,
         messages: 'samples listed',
@@ -28,7 +28,7 @@ function samplesApi(app) {
     const { sampleID } = req.params;
     console.log(`Request_GET_One id:  ${sampleID}`);
     try {
-      const samples = await samplesServices.getSample(sampleID);
+      const samples = await userservices.getSample(sampleID);
       res.status(200).json({
         data: samples,
         messages: 'sample retrieved',
@@ -41,7 +41,7 @@ function samplesApi(app) {
   router.post('/', async function (req, res, next) {
     console.log('Got body:', req.body);
     try {
-      const createdSample = await samplesServices.createNewUser();
+      const createdSample = await userservices.createNewUser(req.body);
       res.status(201).json({
         data: createdSample,
         messages: 'samples created',
@@ -58,10 +58,10 @@ function samplesApi(app) {
     console.log(`Request_Body to updated is ${req}`);
 
     try {
-      const sampleUpdated = await samplesServices.updateSample({
+      const sampleUpdated = await userservices.updateUser(
         sampleID,
-        sampletoUpDate,
-      });
+        sampletoUpDate
+      );
       res.status(200).json({
         data: sampleUpdated,
         messages: 'sample updated',
@@ -74,7 +74,7 @@ function samplesApi(app) {
   router.delete('/:sampleID', async function (req, res, next) {
     const { sampleID } = req.params;
     try {
-      const sampleDeleted = await samplesServices.deleteSample({ sampleID });
+      const sampleDeleted = await userservices.deleteUser(sampleID);
       res.status(200).json({
         data: sampleDeleted,
         messages: 'sample deleted',

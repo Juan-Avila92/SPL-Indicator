@@ -6,12 +6,12 @@ var bodyParser = require('body-parser');
 const app = express();
 
 const { config } = require('./config/index');
-const samplesApi = require('./routes/samples.js');
+const usersApi = require('./routes/usersRoutes.js');
 
 //Development
 app.use(bodyParser.json());
 //Router
-samplesApi(app);
+usersApi(app);
 //Listener
 app.listen(config.port, function () {
   console.log(`Listening http://localhost:${config.port}`);

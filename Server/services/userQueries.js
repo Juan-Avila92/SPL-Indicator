@@ -28,5 +28,17 @@ function createNewUser() {
   const user = { name: 'pruebe' };
   return knex.insert(user).into('users').returning('*');
 }
+function updateUser(id, body) {
+  return knex.update(body).from('users').where({ userID: id });
+}
+function deleteUser(id) {
+  return knex.delete().from('users').where({ userID: id });
+}
 
-module.exports = { getAllUsers, getOneUser, createNewUser };
+module.exports = {
+  getAllUsers,
+  getOneUser,
+  createNewUser,
+  deleteUser,
+  updateUser,
+};
