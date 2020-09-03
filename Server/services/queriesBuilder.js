@@ -1,20 +1,14 @@
-function updateProductByID(id, cols) {
-  // Setup static beginning of query
-  var query = ['UPDATE products'];
-  query.push('SET');
+const { knex } = require('../utils/db');
 
-  // Create another array storing each set command
-  // and assigning a number value for parameterized query
-  var set = [];
-  Object.keys(cols).forEach(function (key, i) {
-    set.push(key + ' = ($' + (i + 1) + ')');
-  });
-  query.push(set.join(', '));
-
-  // Add the WHERE statement to look up by id
-  query.push('WHERE pr_id = ' + id);
-
-  // Return a complete query string
-  return query.join(' ');
+class QueriesBuilder {
+  async getAllUsers() {
+    knex
+      .select()
+      .from('users')
+      .then(function (user) {
+        console.log(user);
+        return user;
+      });
+  }
 }
-module.export = updateProductByID;
+module.exports = QueriesBuilder;

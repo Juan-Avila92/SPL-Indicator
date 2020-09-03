@@ -4,18 +4,31 @@ const Router = require('express-promise-router');
 
 function samplesApi(app) {
   const router = new Router();
-  //use(home:route)
   app.use('/api/samples', router);
+
   const samplesServices = new SamplesService();
 
   // export our router to be mounted by the parent application
   module.exports = router;
-
-  router.get('/', async function (req, res, next) {
-    const { tag } = req.query;
-    console.log(`Request List of all: ${tag}`);
+  //
+  router.post('/', async function (req, res, next) {
+    const { body: sample } = req;
+    console.log('Got body:', req.body);
     try {
-      const samples = await samplesServices.getSamples({ tag });
+      const createdSample = await samplesServices.createSample({ sample });
+      res.status(201).json({
+        data: createdSample,
+        messages: 'samples created',
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  router.get('/all', async function (req, res, next) {
+    console.log(`Request List of all`);
+    try {
+      const samples = await samplesServices.getSamples();
       res.status(200).json({
         data: samples,
         messages: 'samples listed',
@@ -33,20 +46,6 @@ function samplesApi(app) {
       res.status(200).json({
         data: samples,
         messages: 'sample retrieved',
-      });
-    } catch (err) {
-      next(err);
-    }
-  });
-
-  router.post('/', async function (req, res, next) {
-    const { body: sample } = req;
-    console.log(`File to created is ${sample.key}`);
-    try {
-      const createdSample = await samplesServices.createSample({ sample });
-      res.status(201).json({
-        data: createdSample,
-        messages: 'samples created',
       });
     } catch (err) {
       next(err);
