@@ -9,8 +9,8 @@ module.exports.up = function () {
       users.string('password');
     })
     .createTable('samples', function (samples) {
-      samples.increments('samplesID').primary();
-      samples.string('meassurement');
+      samples.increments('sampleID').primary();
+      samples.integer('meassurement');
       samples
         .integer('userID')
         .references('userID')
@@ -31,8 +31,8 @@ module.exports.up = function () {
 module.exports.down = function () {
   // Reverse order here to prevent error.
   return knex.schema
-    .dropTable('users')
     .dropTable('samples')
+    .dropTable('users')
     .then(() => console.log('tables droped'))
     .catch((err) => {
       console.log(err);

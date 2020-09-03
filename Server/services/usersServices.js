@@ -15,8 +15,8 @@ class SamplesServices {
   async getSample(user_id) {
     return getOneUser(user_id);
   }
-  async createNewUser() {
-    return createNewUser();
+  async createNewUser(body) {
+    return createNewUser(body);
   }
   async updateUser(id, body) {
     return updateUser(id, body);
@@ -26,3 +26,5 @@ class SamplesServices {
   }
 }
 module.exports = SamplesServices;
+
+//Creating by Santiago Rey

@@ -9,7 +9,6 @@ function samplesApi(app) {
 
   // export our router to be mounted by the parent application
   module.exports = router;
-  //
 
   router.get('/all', async function (req, res, next) {
     console.log(`Request List of all`);
@@ -86,3 +85,5 @@ function samplesApi(app) {
 }
 
 module.exports = samplesApi;
+
+//Creating by Santiago Rey

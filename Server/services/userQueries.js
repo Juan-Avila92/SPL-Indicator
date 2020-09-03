@@ -24,13 +24,14 @@ function getOneUser(id) {
     });
 }
 
-function createNewUser() {
-  const user = { name: 'pruebe' };
-  return knex.insert(user).into('users').returning('*');
+function createNewUser(body) {
+  return knex.insert(body).into('users').returning('*');
 }
+
 function updateUser(id, body) {
   return knex.update(body).from('users').where({ userID: id });
 }
+
 function deleteUser(id) {
   return knex.delete().from('users').where({ userID: id });
 }
@@ -42,3 +43,4 @@ module.exports = {
   deleteUser,
   updateUser,
 };
+//Creating by Santiago Rey
