@@ -12,7 +12,7 @@ class SamplesServices {
   async getAllUsers() {
     return getAllUsers();
   }
-  async getSample(user_id) {
+  async getUser(user_id) {
     return getOneUser(user_id);
   }
   async createNewUser(body) {
