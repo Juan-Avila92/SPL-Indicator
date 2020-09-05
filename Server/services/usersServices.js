@@ -10,19 +10,19 @@ var {
 
 class SamplesServices {
   async getAllUsers() {
-    return getAllUsers();
+    return getAllUsers() || [];
   }
   async getUser(user_id) {
-    return getOneUser(user_id);
+    return getOneUser(user_id) || [];
   }
   async createNewUser(body) {
-    return createNewUser(body);
+    return createNewUser(body) || [];
   }
   async updateUser(id, body) {
-    return updateUser(id, body);
+    return updateUser(id, body) || [];
   }
   async deleteUser(id) {
-    return deleteUser(id);
+    return deleteUser(id) || [];
   }
 }
 module.exports = SamplesServices;
