@@ -10,7 +10,8 @@ var knex = require('knex')({
     database: config.DB_NAME,
   },
 });
-
+console.log(knex);
+console.log(config);
 module.exports = {
   knex,
 };

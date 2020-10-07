@@ -1,9 +1,10 @@
 const userApi = require('./usersRoutes');
+const sampleApi = require('./sampleRoutes');
 
 const routes = function appApis(app) {
-  app.use('/api/users', userApi);
-  //TODO @Juan-Avila92 userApi need to be change for samples api
-  app.use('/api/samples', userApi);
+  app.use('/api/samples', sampleApi);
+  app.use('./api/users', userApi)
 };
 
 module.exports = routes;
+
